@@ -13,12 +13,26 @@ function App() {
     };
     getUsers();
   }, []);
+
+  const deleteUser = id => {
+    axios.delete(`http://ctfjmg01:8000/api/users/${id}`).then(res => {
+      axios.get("http://ctfjmg01:8000/api/users").then(res => {
+        setUser(res.data);
+      });
+    });
+  };
   return (
     <div className="App">
+      <h1>Users:</h1>
       <div className="userBox">
-        <h1>Users:</h1>
         {users.map(user => (
-          <div className="userCard" key={user.id}>
+          <div
+            className="userCard"
+            key={user.id}
+            onClick={() => {
+              deleteUser(user.id);
+            }}
+          >
             <h3>{user.name}</h3>
             <p>{user.bio}</p>
           </div>
