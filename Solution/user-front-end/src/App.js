@@ -13,7 +13,9 @@ function App() {
     };
     getUsers();
   }, []);
+  //const addUser (name, bio) => {
 
+  //}
   const deleteUser = id => {
     axios.delete(`http://ctfjmg01:8000/api/users/${id}`).then(res => {
       axios.get("http://ctfjmg01:8000/api/users").then(res => {
@@ -37,6 +39,15 @@ function App() {
             <p>{user.bio}</p>
           </div>
         ))}
+      </div>
+      <div className="addUser">
+        <field type="text" className="userName"></field>
+        <field type="text" className="userBio"></field>
+        <button
+          onClick={() => {
+            // addUser();
+          }}
+        ></button>
       </div>
     </div>
   );
