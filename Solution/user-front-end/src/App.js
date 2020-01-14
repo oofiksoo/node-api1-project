@@ -8,22 +8,14 @@ function App() {
   useEffect(() => {
     const getUsers = () => {
       axios.get("http://ctfjmg01:8000/api/users").then(res => {
-        setUser(res);
+        setUser(res.data);
       });
     };
     getUsers();
-    console.log(users);
-  }, [users]);
+  }, []);
   return (
     <div className="App">
-      <div className="userBox">
-        {users.map(user => (
-          <div>
-            <p>{user.name}</p>
-            <p>{user.bio}</p>
-          </div>
-        ))}
-      </div>
+      <div className="userBox">{console.log(users)}</div>
     </div>
   );
 }

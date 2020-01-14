@@ -1,11 +1,11 @@
 console.log("Running");
-
+const cors = require("cors");
 const express = require("express");
 const db = require("./data/db.js");
 const server = express();
 const port = 8000;
 server.use(express.json());
-
+server.use(cors());
 //get users all
 server.get("/api/users", (req, res) => {
     db.find()
