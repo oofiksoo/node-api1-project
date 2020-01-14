@@ -15,7 +15,15 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <div className="userBox">{console.log(users)}</div>
+      <div className="userBox">
+        <h1>Users:</h1>
+        {users.map(user => (
+          <div className="userCard" key={user.id}>
+            <h3>{user.name}</h3>
+            <p>{user.bio}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
