@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-  const [users, setUser] = useState();
+  const [users, setUser] = useState([]);
 
   useEffect(() => {
-    axios.get("/localhost:8000/api/users").then(res => {
-      setUser(res);
-    });
-  });
+    const getUsers = () => {
+      axios.get("http://ctfjmg01:8000/api/users").then(res => {
+        setUser(res);
+      });
+    };
+    getUsers();
+    console.log(users);
+  }, [users]);
   return (
     <div className="App">
       <div className="userBox">
-        {users.map(user => {
+        {users.map(user => (
           <div>
             <p>{user.name}</p>
             <p>{user.bio}</p>
-          </div>;
-        })}
+          </div>
+        ))}
       </div>
     </div>
   );
